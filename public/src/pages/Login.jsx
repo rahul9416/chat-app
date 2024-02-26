@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import { loginRoute } from '../utils/APIRoutes';
 import axios from 'axios'
 import Logo from "../assets/logo.svg"
+import { toast, ToastContainer} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 export default function Login() {
     const [credentials, setCredentials] = useState({username: '', email: '', password: '', confirmPassword: ''})
@@ -17,7 +19,8 @@ export default function Login() {
         e.preventDefault();
         try {
           const userCredential = await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
-          if (true) {
+          console.log(userCredential)
+          if (userCredential) {
             const uid = userCredential.user.uid;
             const data = await axios.post(loginRoute, {uid})
             const userData = data.data
@@ -30,6 +33,13 @@ export default function Login() {
             }
           }
         } catch (error) {
+          toast.error("Invalid Credentials", {
+            position: "bottom-right",
+            autoClose: 8000,
+            draggable: true,
+            theme: 'dark',
+            pauseOnHover: true,
+          });
           console.error('Error signing up:', error);
         }
       };
@@ -72,6 +82,7 @@ export default function Login() {
                   <h3 className='text-white underline'>Not a User? Sign in now !!!</h3>
                 </button>
             </form>
+          <ToastContainer />
         </div>
     </>
 }

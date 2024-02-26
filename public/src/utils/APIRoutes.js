@@ -1,4 +1,4 @@
-export const host = "http://localhost:5000";
+export const host = "https://snappy-backend-gx2n.onrender.com";
 export const registerRoute =  `${host}/api/auth/register`
 export const allUsersRoute = `${host}/api/auth/allUsers`
 export const setAvatarRoute = `${host}/api/auth/setAvatar`

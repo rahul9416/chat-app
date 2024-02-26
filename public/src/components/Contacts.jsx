@@ -47,23 +47,23 @@ export default function Contacts({contacts, currentUser, changeChat}) {
         return 0
     })
 
-    const getLastMessageTime = ((id) => {
-        if (notifications){
-            const data = notifications.filter((noti) => noti.from === id)
-            if(data.length){
-                const date = data[0].time
-                let hour = new Date(date).getHours();
-                let min = new Date(date).getMinutes();
-                if (hour < 10){
-                    hour = '0' + hour.toString();
-                }
-                if (min < 10){
-                    min = '0' + min.toString();
-                }
-                if (hour && min) return hour + ' : ' + min + ' ';
-            }
-        }
-    })
+    // const getLastMessageTime = ((id) => {
+    //     if (notifications){
+    //         const data = notifications.filter((noti) => noti.from === id)
+    //         if(data.length){
+    //             const date = data[0].time
+    //             let hour = new Date(date).getHours();
+    //             let min = new Date(date).getMinutes();
+    //             if (hour < 10){
+    //                 hour = '0' + hour.toString();
+    //             }
+    //             if (min < 10){
+    //                 min = '0' + min.toString();
+    //             }
+    //             if (hour && min) return hour + ' : ' + min + ' ';
+    //         }
+    //     }
+    // })
 
     return(
         <>
@@ -94,9 +94,9 @@ export default function Contacts({contacts, currentUser, changeChat}) {
                                         {notificationCount(contact._id) >0 &&<div className='flex ml-1 justify-center items-center w-6 h-6 bg-amber-500 rounded-full'>
                                             {notificationCount(contact._id)}
                                         </div>}
-                                        <div className='w-12 mr-10'>
+                                        {/* <div className='w-12 mr-10'>
                                             {getLastMessageTime(contact._id)}
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             )

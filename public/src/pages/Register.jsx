@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { auth} from '../firebase';
 import 'firebase/auth';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -7,6 +7,7 @@ import axios from 'axios'
 import { registerRoute } from '../utils/APIRoutes';
 import { useNavigate } from 'react-router-dom'
 import Logo from "../assets/logo.svg"
+import {toast, ToastContainer} from "react-toastify";
 
 export default function Register() {
     const [credentials, setCredentials] = useState({username: '', email: '', password: '', confirmPassword: ''})
@@ -17,21 +18,25 @@ export default function Register() {
         if (credentials.password === credentials.confirmPassword) {
             try {
                 const {username, email, password, confirmPassword} = credentials
-                if (confirmPassword === password){
-                    const userCredential = await createUserWithEmailAndPassword(auth, credentials.email, credentials.password);
-                    const uid =  userCredential.user.uid
-                    const {data} = await axios.post(registerRoute, {uid, username, email, password});
-                    localStorage.setItem('chat-app-user', JSON.stringify(data.user))
-                    if (data.status === true) {
-                        navigate('/setAvatar')
-                    }
-                }
-                else {
-
+                const userCredential = await createUserWithEmailAndPassword(auth, credentials.email, credentials.password);
+                const uid =  userCredential.user.uid
+                const {data} = await axios.post(registerRoute, {uid, username, email, password});
+                localStorage.setItem('chat-app-user', JSON.stringify(data.user))
+                if (data.status === true) {
+                    navigate('/setAvatar')
                 }
               } catch (error) {
                 console.error('Error signing in:', error);
               }
+        }
+        else{
+            toast.error("Password does not match the confirm password", {
+                position: "bottom-right",
+                autoClose: 8000,
+                draggable: true,
+                theme: 'dark',
+                pauseOnHover: true,
+              });
         }
     }
     const handleChange = (event) => {
@@ -41,6 +46,18 @@ export default function Register() {
     const convertToUpperCase = ((text) => {
         return text.charAt(0).toUpperCase()+ text.slice(1)
     });
+
+    useEffect(()=>{
+        async function fetchCurrentUser(){
+            if(JSON.parse(localStorage.getItem('chat-app-user')) === null){
+                navigate('/register')
+            }
+            else{
+                navigate('/')
+            }
+        }
+        fetchCurrentUser();
+    }, [navigate]);
 
     return <>
         <div className='h-[100vh] w-[100vw] flex flex-col justify-center gap-4 items-center bg-[#131324]'>
@@ -62,6 +79,7 @@ export default function Register() {
                   <h3 className='text-white underline'>Already a User? Log in now !!!</h3>
                 </button>
             </form>
+            <ToastContainer/>
         </div>
     </>
 }

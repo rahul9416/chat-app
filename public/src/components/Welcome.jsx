@@ -1,4 +1,3 @@
-import react from "react"
 import Robot from "../assets/robot.gif"
 
 export default function Welcome({currentUser}) {
