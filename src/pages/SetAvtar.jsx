@@ -4,6 +4,8 @@ import axios from 'axios'
 import {Buffer} from 'buffer'
 import { setAvatarRoute } from '../utils/APIRoutes';
 import Loader from '../assets/loader.gif'
+import { toast, ToastContainer} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 export default function SetAvtar() {
 
@@ -15,10 +17,15 @@ export default function SetAvtar() {
 
     const setProfilepicture = async () => {
         if(selectedAvatar ===undefined) {
-            console.log("please select avatar")
+            toast.error("Please select Avatar", {
+                position: "bottom-right",
+                autoClose: 8000,
+                draggable: true,
+                theme: 'dark',
+                pauseOnHover: true,
+              });
         }
         else{
-
             const avatar = avatars[selectedAvatar]
             const user = await JSON.parse(localStorage.getItem("chat-app-user"))
             const uid= user.uid
@@ -109,6 +116,7 @@ export default function SetAvtar() {
                     </div>
                 </div>
             )}
+            <ToastContainer />
         </>
     )
 }

@@ -19,7 +19,6 @@ export default function Login() {
         e.preventDefault();
         try {
           const userCredential = await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
-          console.log(userCredential)
           if (userCredential) {
             const uid = userCredential.user.uid;
             const data = await axios.post(loginRoute, {uid})
