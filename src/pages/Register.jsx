@@ -18,12 +18,14 @@ export default function Register() {
         if (credentials.password === credentials.confirmPassword) {
             try {
                 const {username, email, password, confirmPassword} = credentials
-                const userCredential = await createUserWithEmailAndPassword(auth, credentials.email, credentials.password);
-                const uid =  userCredential.user.uid
-                const {data} = await axios.post(registerRoute, {uid, username, email, password});
-                localStorage.setItem('chat-app-user', JSON.stringify(data.user))
-                if (data.status === true) {
-                    navigate('/setAvatar')
+                if (password === confirmPassword){
+                    const userCredential = await createUserWithEmailAndPassword(auth, credentials.email, credentials.password);
+                    const uid =  userCredential.user.uid
+                    const {data} = await axios.post(registerRoute, {uid, username, email, password});
+                    localStorage.setItem('chat-app-user', JSON.stringify(data.user))
+                    if (data.status === true) {
+                        navigate('/setAvatar')
+                    }
                 }
               } catch (error) {
                 console.error('Error signing in:', error);
