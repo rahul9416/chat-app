@@ -107,11 +107,11 @@ export default function Chat() {
 
 
     return <>
-        <div className='h-[100vh] w-[100vw] flex flex-col sm:justify-center sm:items-center sm:gap-4 bg-[#131324]'>
+        <div className='h-[100vh] w-[100%] flex flex-col sm:justify-center sm:items-center sm:gap-4 bg-[#131324]'>
             <div className='w-[100%] hidden sm:block text-white'>
                 <Logout />
             </div>
-            <div className='flex justify-center items-center sm:h-[85vh] sm:w-[85vw] lg:w-[85vw]'>
+            <div className='flex justify-center items-center sm:h-[85vh] sm:w-[85%]'>
                 <div className=' bg-[#00000076] grid grid-cols-12'>
                     <div className='col-span-12 lg:hidden'>
                         {

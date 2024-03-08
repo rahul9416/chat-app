@@ -22,3 +22,49 @@
       background: #997af0;
     }
   }
+.wd-100{
+  width: 100% !important;
+}
+.wd-90{
+  width: 90% !important;
+}
+.wd-80{
+  width: 80% !important;
+}
+.wd-70{
+  width: 70% !important;
+}
+.wd-60{
+  width: 60% !important;
+}
+.wd-74{
+  width: 57vw!important;
+}
+@media only screen and (min-width: 1536px) {
+  .wd-74{
+    width: 63.7vw!important;
+  } 
+}
+@media only screen and (max-width: 639px) {
+  .wd-74{
+    width: 100vw!important;
+  } 
+}
+
+@media screen and (min-width: 640px) and (max-width: 780px){
+  .wd-74{
+    width: 84vw!important;
+  } 
+}
+
+@media screen and (min-width: 780px) and (max-width: 1024px){
+  .wd-74{
+    width: 68vw!important;
+  } 
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1536px){
+  .wd-74{
+    width: 56.5vw!important;
+  } 
+}

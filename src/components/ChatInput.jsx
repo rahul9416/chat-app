@@ -33,7 +33,6 @@ export default function ChatInput({handleSendMsg}) {
             <div className='button-container'>
                 <div className='emoji'>
                     <BsEmojiSmileFill onClick={handleEmojiPickerHideShow} className='emoji-btn'/>
-                        {/* <button className='emoji-btn' onClick={handleEmojiPickerHideShow}>Emoji</button> */}
                     {showEmojiPicker && <Picker onEmojiClick={(a) => handleEmojiClick(a)} className='emoji-display' />}
                 </div>
             </div>
@@ -50,28 +49,27 @@ const Container = styled.div`
     grid-template-columns: 5% 95%;
     align-items: center;
     background-color: #080420;
-    // background-color: #ffffff;
-    padding: 0.7rem 2rem;
-    padding-bottom: 0.3rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    @media screen and (max-width: 500px) {
+        grid-template-columns: 10% 90%;
+    }
     .button-container {
-        height: 20%;
+        height: 100%;
         display: flex;
         align-items: center;
+        justify-content: center;
         color: white;
         gap: 1rem;
+        width: 100%;
         .emoji {
             position: relative;
             .emoji-btn {
-                font-size: 2rem;
+                font-size: 1.5rem;
                 color: #ffff00c8;
                 cursor: pointer;
-                margin-left: -1.5rem;
-                @media screen and (min-width: 600px) and (max-width: 1080px) {
-                    margin-left: -0.8rem;
-                }
-                @media screen and (min-width: 1080px) {
-                    margin-left: -0.8rem;
-                }
             }
             .emoji-display {
                 position: absolute;
@@ -97,7 +95,10 @@ const Container = styled.div`
         display: flex;
         align-content: center;
         background-color: #ffffff34;
-        gap: 2rem;
+        gap: 0.5rem;
+        @media screen and (max-width: 500px) {
+            gap:0;
+        }
         input{
             width: 90%;
             height: 5vh;
@@ -112,10 +113,15 @@ const Container = styled.div`
             &:focus {
                 outline: none;
             }
+            @media screen and (min-width: 720px) and (max-width: 1080px) {
+                width: 80%;
+            }
+            @media screen and (min-width: 300px) and (max-width: 720px) {
+                width: 75%;
+            }
         }
         button {
             width: 10%;
-            padding: 0.3rem 2rem;
             border-radius: 2rem;
             display: flex;
             justify-content: center;
@@ -127,12 +133,13 @@ const Container = styled.div`
                 color: white;
             }
             @media screen and (min-width: 720px) and (max-width: 1080px) {
-                padding: 0.3rem 1rem;
+                width: 20%;
                 svg {
                     font-size: 2rem;
                 }
             }
             @media screen and (min-width: 300px) and (max-width: 720px) {
+                width: 25%;
                 svg {
                     font-size: 2rem;
                 }

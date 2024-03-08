@@ -68,11 +68,11 @@ export default function Contacts({contacts, currentUser, changeChat}) {
     return(
         <>
             {currentUserImage && currentUserName && (
-                <div className='text-white w-full h-[100vh] sm:h-[84vh] grid grid-rows-12 bg-[#080420]'>
+                <div className='text-white w-[100%] h-[100vh] sm:h-[84vh] grid grid-rows-12 bg-[#080420]'>
                     <div className='row-span-2 grid grid-cols-3'>
-                        <img src={Logo} alt="" className='h-20 w-20 min-[380px]:h-24 min-[380px]:w-24 mt-6 ml-10'/>
+                        <img src={Logo} alt="" className='h-16 w-16 min-[380px]:h-24 min-[380px]:w-24 mt-6 ml-8'/>
                         <div className='flex items-center justify-center'>
-                            <h1 className='text-white text-4xl ml-10'>{convertToUpperCase('snappy')}</h1>
+                            <h1 className='text-white text-4xl ml-10'>{convertToUpperCase('snapppy')}</h1>
                         </div>
                         <div className='sm:hidden flex items-center mt-12 justify-center '>
                             <Logout />
